@@ -1,6 +1,7 @@
 import './style.css'
 import type { Booking } from './models/booking'
 import { countSeats } from './lib/count-seats'
+import workshopUrl from './assets/workshop.svg'
 
 // А1: замените выведенный тип Booking явным interface и добавьте BookingStatus.
 const initialBookings: Booking[] = [
@@ -51,6 +52,8 @@ if (!(form instanceof HTMLFormElement) || !(list instanceof HTMLUListElement)
   throw new Error('Не найдены элементы интерфейса')
 }
 // Б3: импортируйте картинку, задайте logo.src и logo.hidden = false.
+logo.src = workshopUrl
+logo.hidden = false
 
 function render(items: Booking[], target: HTMLUListElement, counter: HTMLElement) {
   target.replaceChildren()
