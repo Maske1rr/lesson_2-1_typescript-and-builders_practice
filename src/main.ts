@@ -17,9 +17,14 @@ const initialBookings: Booking[] = [
 const bookings: Array<Booking> = [...initialBookings]
 
 // А2: явно задайте Booking[] и тип результата, считайте сумму seats.
-function countSeats(items: typeof initialBookings) {
-  return items.length
+function countSeats(items: Booking[]): number {
+  let sum = 0
+  items.forEach((booking) => {
+    sum += booking.seats
+  })
+  return sum
 }
+const total: number = countSeats(bookings)
 
 // А3: пока каждая заявка означает одного участника.
 // Замените тело проверкой raw и преобразованием в целое число от 1 до 5.
