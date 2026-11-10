@@ -29,8 +29,10 @@ const total: number = countSeats(bookings)
 // А3: пока каждая заявка означает одного участника.
 // Замените тело проверкой raw и преобразованием в целое число от 1 до 5.
 function readSeats(raw: FormDataEntryValue | null): number | null {
-  void raw
-  return 1
+  if (typeof raw !== 'string' || raw.trim() === '') return null
+  const seats = Number(raw)
+  if (!Number.isInteger(seats) || seats < 1 || seats > 5) return null
+  return seats
 }
 
 const app = document.querySelector<HTMLDivElement>('#app')
