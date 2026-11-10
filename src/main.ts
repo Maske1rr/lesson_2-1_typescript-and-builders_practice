@@ -1,11 +1,19 @@
 import './style.css'
 
 // А1: замените выведенный тип Booking явным interface и добавьте BookingStatus.
-const initialBookings = [
+type BookingStatus = 'new' | 'confirmed'
+
+interface Booking {
+  id: string
+  name: string
+  seats: number
+  status: BookingStatus
+}
+
+const initialBookings: Booking[] = [
   { id: 'b1', name: 'Анна', seats: 1, status: 'confirmed' },
   { id: 'b2', name: 'Илья', seats: 1, status: 'new' },
 ]
-type Booking = (typeof initialBookings)[number]
 const bookings: Array<Booking> = [...initialBookings]
 
 // А2: явно задайте Booking[] и тип результата, считайте сумму seats.
