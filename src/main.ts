@@ -8,11 +8,12 @@ interface Booking {
   name: string
   seats: number
   status: BookingStatus
+  source: 'web'
 }
 
 const initialBookings: Booking[] = [
-  { id: 'b1', name: 'Анна', seats: 1, status: 'confirmed' },
-  { id: 'b2', name: 'Илья', seats: 1, status: 'new' },
+  { id: 'b1', name: 'Анна', seats: 1, status: 'confirmed', source: 'web' },
+  { id: 'b2', name: 'Илья', seats: 1, status: 'new', source: 'web' },
 ]
 const bookings: Array<Booking> = [...initialBookings]
 
@@ -74,7 +75,7 @@ function render(items: Booking[], target: HTMLUListElement, counter: HTMLElement
     title.textContent = booking.name
     const details = document.createElement('span')
     // А4: добавьте source в эту строку после изменения модели.
-    details.textContent = `${booking.seats} участн. · ${booking.status === 'confirmed' ? 'Подтверждена' : 'Новая'}`
+    details.textContent = `${booking.seats} участн. · ${booking.status === 'confirmed' ? 'Подтверждена' : 'Новая'} · ${booking.source}`
     item.append(title, details)
     target.append(item)
   })
@@ -95,7 +96,7 @@ form.addEventListener('submit', (event) => {
     return
   }
   const booking: Booking = {
-    id: crypto.randomUUID(), name: rawName.trim(), seats, status: 'new',
+    id: crypto.randomUUID(), name: rawName.trim(), seats, status: 'new', source: 'web',
   }
   bookings.push(booking)
   render(bookings, list, totalElement)
