@@ -1,16 +1,8 @@
 import './style.css'
+import type { Booking } from './models/booking'
+import { countSeats } from './lib/count-seats'
 
 // А1: замените выведенный тип Booking явным interface и добавьте BookingStatus.
-type BookingStatus = 'new' | 'confirmed'
-
-interface Booking {
-  id: string
-  name: string
-  seats: number
-  status: BookingStatus
-  source: 'web'
-}
-
 const initialBookings: Booking[] = [
   { id: 'b1', name: 'Анна', seats: 1, status: 'confirmed', source: 'web' },
   { id: 'b2', name: 'Илья', seats: 1, status: 'new', source: 'web' },
@@ -18,13 +10,6 @@ const initialBookings: Booking[] = [
 const bookings: Array<Booking> = [...initialBookings]
 
 // А2: явно задайте Booking[] и тип результата, считайте сумму seats.
-function countSeats(items: Booking[]): number {
-  let sum = 0
-  items.forEach((booking) => {
-    sum += booking.seats
-  })
-  return sum
-}
 const total: number = countSeats(bookings)
 
 // А3: пока каждая заявка означает одного участника.
